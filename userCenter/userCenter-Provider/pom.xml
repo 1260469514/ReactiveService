@@ -14,22 +14,81 @@
     <name>userCenter-Provider</name>
 
     <properties>
-        <java.version>1.7</java.version>
-        <skipTests>true</skipTests>
-
-        <log.level>DEBUG</log.level>
-        <log.path>/data/logs</log.path>
+        <main-class>com.issues.userCenter-Consumer.UserCenterProviderApplication</main-class>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.issues</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <!--package plugin-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <!--运行jar包时运行的主类，要求类全名-->
+                                <mainClass>${main-class}</mainClass>
+                                <!-- 是否指定项目classpath下的依赖 -->
+                                <addClasspath>true</addClasspath>
+                                <!-- 指定依赖的时候声明前缀 -->
+                                <classpathPrefix>./</classpathPrefix>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <executions>
+                        <execution><!-- 配置执行器 -->
+                            <id>make-assembly</id>
+                            <phase>package</phase><!-- 绑定到package生命周期阶段上 -->
+                            <goals>
+                                <goal>single</goal><!-- 只运行一次 -->
+                            </goals>
+                            <configuration>
+                                <finalName>${project.name}-${project.version}</finalName>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor><!--配置描述文件路径-->
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
