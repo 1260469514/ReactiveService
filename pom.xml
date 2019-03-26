@@ -4,10 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.issue</groupId>
+    <groupId>com.issues</groupId>
     <artifactId>reactive</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
+    <description>Based on reactive full stack development</description>
 
     <modules>
         <module>manage</module>
@@ -17,42 +18,86 @@
         <project.version>1.0.0</project.version>
         <java.version>1.8</java.version>
         <springboot.version>2.1.3.RELEASE</springboot.version>
+        <logback.version>1.2.3</logback.version>
+        <r2dbc.version>1.0.0.M7</r2dbc.version>
+        <r2dbc-mysql.version>0.9.32</r2dbc-mysql.version>
+        <spring-data-r2dbc.version>1.0.0.M1</spring-data-r2dbc.version>
+        <slf4j-api.version>1.7.25</slf4j-api.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+
+            <!--No-Sql-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
+
+            <!--Data-->
+            <dependency>
+                <groupId>io.r2dbc</groupId>
+                <artifactId>r2dbc-client</artifactId>
+                <version>${r2dbc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.jasync-sql</groupId>
+                <artifactId>jasync-r2dbc-mysql</artifactId>
+                <version>${r2dbc-mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.jasync-sql</groupId>
+                <artifactId>jasync-mysql</artifactId>
+                <version>${r2dbc-mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-r2dbc</artifactId>
+                <version>${spring-data-r2dbc.version}</version>
+            </dependency>
+
+
+
+            <!--Validation-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-validation</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
+
+            <!--Web-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-webflux</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
+
+            <!--Config-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
+
+            <!--Bootstrap-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
 
+            <!--FastAnnotation-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <optional>true</optional>
             </dependency>
 
+            <!--Test-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
@@ -65,6 +110,19 @@
                 <artifactId>reactor-test</artifactId>
                 <scope>test</scope>
             </dependency>
+
+            <!--Log-->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
