@@ -6,7 +6,6 @@
     <packaging>jar</packaging>
     <name>systemManagePlatform</name>
 
-
     <parent>
         <groupId>com.issues</groupId>
         <artifactId>manage</artifactId>
@@ -18,17 +17,18 @@
     </properties>
 
     <dependencies>
-        <!--No-Sql-->
         <dependency>
             <groupId>com.issues</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-beans</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+
+        <!--Util-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
 
         <!--Validation-->

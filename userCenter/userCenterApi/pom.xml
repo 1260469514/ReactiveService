@@ -16,56 +16,5 @@
     <dependencies>
 
     </dependencies>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!--package plugin-->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <!-- 是否指定项目classpath下的依赖 -->
-                                <addClasspath>true</addClasspath>
-                                <!-- 指定依赖的时候声明前缀 -->
-                                <classpathPrefix>./</classpathPrefix>
-                            </manifest>
-                        </archive>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <executions>
-                        <execution><!-- 配置执行器 -->
-                            <id>make-assembly</id>
-                            <phase>package</phase><!-- 绑定到package生命周期阶段上 -->
-                            <goals>
-                                <goal>single</goal><!-- 只运行一次 -->
-                            </goals>
-                            <configuration>
-                                <finalName>${project.name}-${project.version}</finalName>
-                                <descriptor>src/main/assembly/assembly.xml</descriptor><!--配置描述文件路径-->
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    
 </project>
